@@ -2,9 +2,9 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Badge } from "../ui/badge";
-import React, { useCallback } from "react";
+import { memo, useCallback } from "react";
 
-const CurrentSearchProps = React.memo(() => {
+const CurrentSearchProps = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -51,6 +51,6 @@ const CurrentSearchProps = React.memo(() => {
       )}
     </div>
   );
-});
+};
 
-export default CurrentSearchProps;
+export default memo(CurrentSearchProps);

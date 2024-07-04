@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../ui/pagination";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 
 interface PaginationProps {
   totalPages: number;
@@ -87,30 +87,32 @@ const generatePaginationItems = (
   return items;
 };
 
-const PaginationComp: React.FC<PaginationProps> = React.memo(
-  ({ totalPages, currentPage, handlePageChange }) => {
-    const handlePreviousClick = useCallback(() => {
-      handlePageChange(currentPage - 1);
-    }, [currentPage, handlePageChange]);
+const PaginationComp: React.FC<PaginationProps> = ({
+  totalPages,
+  currentPage,
+  handlePageChange,
+}) => {
+  const handlePreviousClick = useCallback(() => {
+    handlePageChange(currentPage - 1);
+  }, [currentPage, handlePageChange]);
 
-    const handleNextClick = useCallback(() => {
-      handlePageChange(currentPage + 1);
-    }, [currentPage, handlePageChange]);
+  const handleNextClick = useCallback(() => {
+    handlePageChange(currentPage + 1);
+  }, [currentPage, handlePageChange]);
 
-    return (
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious onClick={handlePreviousClick} />
-          </PaginationItem>
-          {generatePaginationItems(totalPages, currentPage, handlePageChange)}
-          <PaginationItem>
-            <PaginationNext onClick={handleNextClick} />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    );
-  }
-);
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious onClick={handlePreviousClick} />
+        </PaginationItem>
+        {generatePaginationItems(totalPages, currentPage, handlePageChange)}
+        <PaginationItem>
+          <PaginationNext onClick={handleNextClick} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+};
 
-export default PaginationComp;
+export default memo(PaginationComp);

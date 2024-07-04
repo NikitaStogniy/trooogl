@@ -3,7 +3,7 @@ import { CardProps, Type } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import DynamicName from "./DynamicName";
-import React from "react";
+import React, { memo } from "react";
 
 const getImage = (type: Type) => {
   return getPlaceholder(type);
@@ -28,4 +28,4 @@ const Card: React.FC<CardProps> = ({ type, name, url, id }) => {
   );
 };
 
-export default React.memo(Card);
+export default memo(Card);
