@@ -18,7 +18,7 @@ export async function GET(req: Request) {
     const url = `${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}${type}${
       searchParam ? searchParam : pageParam
     }`;
-    console.log(url);
+
     const response = await axios.get(url);
     const data: MultiResponse = response.data;
     return new Response(JSON.stringify(data), { status: 200 });

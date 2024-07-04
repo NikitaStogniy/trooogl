@@ -20,7 +20,6 @@ const vehicles = [
 ];
 
 export const getPlaceholder = (type: Type) => {
-  console.log(type);
   return type === "planets"
     ? planets[Math.floor(Math.random() * planets.length)]
     : type === "people"

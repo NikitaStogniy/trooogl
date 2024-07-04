@@ -13,7 +13,7 @@ const getItem = cache(async (id: string, type: string) => {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSingleData/?type=${type}&id=${id}`
     );
-    console.log(response.data);
+
     return response.data as DataResponse;
   } catch (error) {
     console.error("Error fetching data:", error);
